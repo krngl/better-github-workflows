@@ -1,9 +1,9 @@
 {
-  "name": "better-github-workflows",
+  "name": "@krngl/better-github-workflows",
   "displayName": "Better Github Workflows",
   "version": "0.3.16",
   "description": "Better Github Workflows",
-  "author": "revdev <mail@revdev.me>",
+  "author": "krngl <mail@krngl.dev>",
   "scripts": {
     "dev": "plasmo dev",
     "build:firefox": "plasmo build --target=firefox-mv3",

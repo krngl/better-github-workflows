@@ -1,7 +1,7 @@
 import { test } from './fixtures';
 
 test('happypath', async ({ page }) => {
-  await page.goto('https://github.com/jakobgoerke/better-github-workflows/actions');
+  await page.goto('https://github.com/krngl/better-github-workflows/actions');
 
   await page.waitForSelector('[data-testid="page-setup"]');
   await page.getByTestId('token-input').fill(process.env.E2E_PAT);
@@ -14,5 +14,5 @@ test('happypath', async ({ page }) => {
   await page.waitForSelector('[data-testid="workflow-link"]');
   await page.getByTestId('workflow-link').click();
 
-  await page.waitForURL('https://github.com/jakobgoerke/better-github-workflows/actions/workflows/e2e-test.yml');
+  await page.waitForURL('https://github.com/krngl/better-github-workflows/actions/workflows/e2e-test.yml');
 });

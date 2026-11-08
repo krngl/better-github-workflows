@@ -1,7 +1,7 @@
 import { expect, test } from './fixtures';
 
 test('grouping', async ({ page }) => {
-  await page.goto('https://github.com/jakobgoerke/better-github-workflows/actions');
+  await page.goto('https://github.com/krngl/better-github-workflows/actions');
 
   await page.waitForSelector('[data-testid="page-setup"]');
   await page.getByTestId('token-input').fill(process.env.E2E_PAT);
