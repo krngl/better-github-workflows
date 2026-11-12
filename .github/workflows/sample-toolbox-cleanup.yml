@@ -3,6 +3,9 @@ name: toolbox-cleanup
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   sample:
     runs-on: ubuntu-latest

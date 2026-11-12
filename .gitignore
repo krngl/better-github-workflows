@@ -37,3 +37,5 @@ dist/
 /blob-report/
 /playwright/.cache/
 tsconfig.tsbuildinfo
+# yarn
+.yarn

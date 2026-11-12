@@ -8,13 +8,18 @@ on:
 concurrency:
   group: ${{ github.workflow }}
 
+permissions:
+  contents: read
+
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: setup
         uses: ./.github/actions/setup
@@ -41,7 +46,9 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: setup
         uses: ./.github/actions/setup
@@ -50,12 +57,9 @@ jobs:
         shell: bash
         run: yarn build:firefox
 
-      - name: Install web-ext
-        run: yarn global add web-ext
-
       - name: Publish firefox
         run: |
-          web-ext sign \
+          yarn web-ext sign \
             --source-dir "build/firefox-mv3-prod" \
             --api-key "${{ secrets.FIREFOX_STORE_JWT_ISSUER }}" \
             --api-secret "${{ secrets.FIREFOX_STORE_JWT_SECRET }}" \
@@ -67,7 +71,9 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       - name: setup
         uses: ./.github/actions/setup
@@ -76,9 +82,6 @@ jobs:
         shell: bash
         run: yarn build:chrome
 
-      - name: Install chrome webstore upload cli
-        run: yarn global add chrome-webstore-upload-cli
-
       - name: Publish Chrome
         env:
           CLIENT_ID: ${{ secrets.CHROME_STORE_CLIENT_ID }}
@@ -86,6 +89,6 @@ jobs:
           REFRESH_TOKEN: ${{ secrets.CHROME_STORE_REFRESH_TOKEN }}
           PUBLISHER_ID: ${{ secrets.CHROME_STORE_PUBLISHER_ID }}
         run: |
-          chrome-webstore-upload \
+          yarn chrome-webstore-upload \
             --source "build/chrome-mv3-prod" \
             --extension-id "${{ secrets.CHROME_STORE_EXTENSION_ID }}"

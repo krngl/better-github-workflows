@@ -3,6 +3,9 @@ name: tool-infra-redis__destroy
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   sample:
     runs-on: ubuntu-latest
